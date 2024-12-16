@@ -3,7 +3,7 @@
 </script>
 
 <template>
-7777关于页面
+7关于页面
 </template>
 <script>
 import {onMounted} from "vue";
