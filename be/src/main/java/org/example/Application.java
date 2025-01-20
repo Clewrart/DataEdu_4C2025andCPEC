@@ -19,7 +19,7 @@ public class Application {
         FilterRegistrationBean<TokenFilter> registrationBean = new FilterRegistrationBean<>();
 
         registrationBean.setFilter(new TokenFilter());
-        registrationBean.addUrlPatterns("/api/*"); // 设置需要过滤的URL模式
+        registrationBean.addUrlPatterns("/api/*");
 
         return registrationBean;
     }
