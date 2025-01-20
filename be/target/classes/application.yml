@@ -10,8 +10,8 @@ spring:
     password: 'Swfu@2025'
     type: com.zaxxer.hikari.HikariDataSource
     #siyu:服务器mysql版本为：8.4.2,服务器47.96.10.165，数据库datasci，用户expsys
-    #mysql 驱动版本：mysql-connector-java-8.0.16.jar 高版本 Mysql 驱动时，配置的 driver-class-name 不再是 com.mysql.jdbc.Driver，url 后面必须设置时区 serverTimezone
-    url: jdbc:mysql://127.0.0.1:3306/datasci?characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    #mysql 高版本 Mysql 驱动时，url 后面必须设置时区 serverTimezone
+    url: jdbc:mysql://47.96.10.165:3306/datasci?characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
   mvc:
     pathmatch:
