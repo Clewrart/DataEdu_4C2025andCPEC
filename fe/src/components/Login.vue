@@ -74,23 +74,27 @@ async function waitLogin() {
   //登录操作
   loading.value = true; //开始加载
   try {
-    const res = await login(username.value, password.value); //执行登录请求
+    console.log("尝试登录...");
+    const res = await login(username.value, password.value);
+    console.log("登录接口响应：", res);
     if (res.data.code === 200) {
       const token = res.data.data.token;
-      setAccess({ token });
+      console.log("获取到的 token：", token);
+      setAccess({token});
       const infoRes = await getUserInfo(token);
+      console.log("用户信息接口响应：", infoRes);
       const info = infoRes.data.data;
       setUserInfo(info);
 
       showMessage("success", "登录成功");
-      router.push({ name: info.role });
+      router.push({name: info.role});
     } else {
       showMessage("error", "用户名或密码错误");
+      console.log("登录失败响应：", res);
     }
   } catch (error) {
+    console.error("请求过程中发生错误：", error);
     showMessage("error", "登录请求失败，请稍后再试");
-  } finally {
-    loading.value = false; // 请求完成后恢复按钮状态
   }
 }
 

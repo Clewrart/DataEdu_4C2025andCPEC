@@ -31,7 +31,7 @@ public class TokenUtil {
   }
 
   public static boolean validateToken(String token) {
-    // 如果token 为空 返回false
+    // 如果token为空返回false
     if (token == null || token.isEmpty()){
       return false;
     }
