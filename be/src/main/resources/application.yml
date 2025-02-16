@@ -20,7 +20,7 @@ mybatis_plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 file:
-  dir: D:\N02_LabProject\datasci\uploads\
+  dir: /target/uploadscc
 
 
 
