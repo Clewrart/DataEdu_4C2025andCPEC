@@ -82,7 +82,7 @@
           </div>
         </div>
     </el-row>
-    <el-dialog v-model="uploadDocumentVisible" width="500" title="通过Excel表格导入学生" :before-close="handleClose">
+    <el-dialog v-model="uploadDocumentVisible" width="500" title="上传实验材料" :before-close="handleClose">
         <el-upload class="upload-demo" :on-change="handleFileChange" :show-file-list="false" :auto-upload="false" drag
             :multiple="false">
             <el-icon class="el-icon--upload"><upload-filled /></el-icon>
@@ -144,7 +144,6 @@ async function getTeacherDocuments() {
 }
 
 
-
 const deleteTeacherDocument = async (id) => {
     const res = await deleteDocument(id)
     if (res.data.code === 200) {
@@ -184,31 +183,31 @@ const currentRankList = ref([])
 async function getCurrentRankList() {
     const res = await rankList(props.id);
     if (res.data.code === 200) {
-        const rawList = res.data.data;//原始数据
-        //计算排名
+        const rawList = res.data.data;// 原始数据
+        // 计算排名
         const rankedList = calculateRank(rawList);
-        //更新列表
+        // 更新列表
         currentRankList.value = rankedList;
     }
 }
-//后端不会改，前端重塑
+// 前端排名
 function calculateRank(rankList) {
-    let rank = 1; //目前排名
-    let prevScore = null; //上一个分数
-    let sameRankCount = 0; //同分人数累计
+    let rank = 1; // 目前排名
+    let prevScore = null; // 上一个分数
+    let sameRankCount = 0; // 同分人数累计
     const result = [];
 
     rankList.forEach((item, index) => {
         if (item.score !== prevScore) {
-            rank += sameRankCount; //跳过相同分数的排名
-            sameRankCount = 1;     //重置同分计数
+            rank += sameRankCount; // 跳过相同分数的排名
+            sameRankCount = 1;     // 重置同分计数
         } else {
-            sameRankCount++; //分数相同，同分计数+1
+            sameRankCount++; // 分数相同，同分计数+1
         }
 
-        prevScore = item.score; //更新上一分数
+        prevScore = item.score; // 更新上一分数
 
-        //添加排名字段
+        // 添加排名字段
         result.push({
             ...item,
             rank,

@@ -73,7 +73,7 @@
             </div>
                     <div class="value">
                         <div v-if="studentDocuments.length === 0">
-                            暂未上传
+                            你暂未上传相关作业。
                         </div>
                         <div class="list">
                             <div class="item" v-for="document in studentDocuments">
