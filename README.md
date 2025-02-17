@@ -23,8 +23,8 @@
 前端在fe目录下开一个终端，执行`npm i`安装完成依赖，然后`npm run dev`即可。
 
 ###### siyu注释
-1.springboot后端已部署服务器，在`47.96.10.165`，端口`1152`,前后端分离可以实现本地前端云上后端，完全部署前端`admin.clewrart.top`,正在完善
-2.数据库MySQL8.4.2 在线`47.96.10.165`，端口`3306`，用户`expsys`，密码请email`siyu7805@gmail.com`
+1.springboot后端已部署服务器，在`47.96.10.165`，端口`1152`,前后端分离可以实现本地前端云上后端，完全部署前端`cloud.clewrart.top`,正在完善
+2.数据库MySQL8.0.35 在线`47.96.10.165`，端口`3306`，用户`datasci`，密码请email`siyu7805@gmail.com`Swfu@2025
 3.使用前将application.yml中file.dir改为本地路径，否则教师文件会报错。
 
 

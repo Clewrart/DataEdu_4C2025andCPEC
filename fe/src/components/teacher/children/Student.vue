@@ -299,9 +299,15 @@ const studentExcel = ref(null)
 
 const importVisible = ref(false)
 function handleFileChange(e) {
-    console.log(`output-e`, e)
-    studentExcel.value = e.raw;
-    console.log(`output-studentExcel.value`, studentExcel.value)
+    if (!e || !e.raw) {
+        console.error('Invalid file object:', e);
+        return;
+    }
+    const file = e.raw;
+    console.log('File name:', file.name); // 直接访问属性
+    console.log('File size:', file.size); // 直接访问属性
+    studentExcel.value = file;
+    console.log('output-studentExcel.value', studentExcel.value);
 }
 
 const uploadStudentButtonLoading=ref(false)
