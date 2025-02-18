@@ -208,11 +208,12 @@ const uploadDocumentLoading = ref(false)
 
 function handleFileChange(e) {
     // uploadDocumentFile.value = e.raw;
-    if (experiment.value.uploadFileType === '.csv') {
+    if (experiment.value.uploadFileType === '.csv' || experiment.value.uploadFileType === '.json') {
         uploadFileList.value=[]
     }
     uploadFileList.value.push(e.raw)
 }
+
 
 async function handleUploadDocument() {
     uploadDocumentLoading.value = true;

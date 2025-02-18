@@ -149,8 +149,6 @@ function getExperimentList() {
         }
     });
 
-
-
 }
 
 
@@ -276,6 +274,10 @@ const fileTypeOptions = [
     {
         label: "图片文件",
         value: "image/*"
+    },
+    {
+        label: "CocoJson文件",
+        value: ".json"
     },
 ]
 
