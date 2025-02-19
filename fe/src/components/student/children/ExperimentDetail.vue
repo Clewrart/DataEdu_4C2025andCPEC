@@ -166,9 +166,7 @@ const props = defineProps({
 })
 
 const studentInfo = getUserInfo();
-
 const experiment = ref({})
-
 const studentDocuments = ref([])
 async function getExperiment() {
     const res = await getExperimentByID(props.id)
@@ -181,16 +179,12 @@ async function getExperiment() {
     }
 }
 
-
-
-
 async function getStudentDocuments() {
     const res = await getDocuments(props.id, studentInfo.id, studentInfo.role)
     if (res.data.code === 200) {
         studentDocuments.value = res.data.data
     }
 }
-
 
 
 const deleteTeacherDocument = async (id) => {
@@ -218,53 +212,86 @@ function handleFileChange(e) {
 async function handleUploadDocument() {
     uploadDocumentLoading.value = true;
     let score = 0;
+
+    // 获取 Token（假设存储在 localStorage 中）
+    const token = localStorage.getItem('token');
+    if (!token) {
+        ElMessage.error("请先登录");
+        router.push('/login');
+        return;
+    }
+
     try {
-        const judge_res = await judge(experiment.value.judgeUrl, uploadFileList.value)
+        // 调用评分接口时传递 Token
+        const judge_res = await judge(experiment.value.judgeUrl, uploadFileList.value, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'multipart/form-data'
+            }
+        });
         score = judge_res.data.score;
     } catch (error) {
-        console.log(`output-error`, error)
-        return ElMessage.error("评分失败")
-    }
-    finally {
+        console.error("评分失败:", error.response?.data || error.message);
+        ElMessage.error("评分失败");
+        return;
+    } finally {
         uploadDocumentLoading.value = false;
     }
 
-
-
-    const formData = new FormData()
-    formData.append("experimentId", props.id)
-    formData.append("userId", studentInfo.id)
-    formData.append("role", studentInfo.role)
+    // 上传文件时传递 Token
+    const formData = new FormData();
+    formData.append("experimentId", props.id);
+    formData.append("userId", studentInfo.id);
+    formData.append("role", studentInfo.role);
     for (const file of uploadFileList.value) {
-        console.log(`output-file`,file)
-        formData.append("files", file)
+        formData.append("files", file);
     }
 
-
-    const res = await uploadDocument(formData)
-    if (res.data.code === 200) {
-        await getStudentDocuments()
-    }
-
-    const esForm = new FormData()
-    esForm.append("experimentId", props.id)
-    esForm.append("studentId", studentInfo.id)
-    esForm.append("score", score)
-    esForm.append("uploadCount", currentES.value.uploadCount + 1)
     try {
-        await updateES(esForm)
+        const res = await uploadDocument(formData, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+        if (res.data.code === 200) {
+            await getStudentDocuments();
+        }
     } catch (error) {
-        ElMessage.error("系统错误,请删除文件后重试")
+        console.error("上传失败:", error.response?.data || error.message);
+        ElMessage.error("上传失败，请删除文件后重试");
+        return;
     }
-    await getES()
+
+    // 更新实验学生记录时传递 Token
+    const esForm = new FormData();
+    esForm.append("experimentId", props.id);
+    esForm.append("studentId", studentInfo.id);
+    esForm.append("score", score);
+    esForm.append("uploadCount", currentES.value.uploadCount + 1);
+
+    try {
+        await updateES(esForm, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+    } catch (error) {
+        console.error("更新失败:", error.response?.data || error.message);
+        ElMessage.error("系统错误，请删除文件后重试");
+        return;
+    }
+
+    // 刷新数据
+    await getES();
     await getCurrentRankList();
     await getMyRank();
 
     ElMessage.success(`
         本次提交得分:${score},
         本次提交排名:${myRank.value}/${currentRankList.value.length}
-    `)
-    uploadDocumentVisible.value = false
+    `);
+    uploadDocumentVisible.value = false;
     uploadDocumentLoading.value = false;
 }
 

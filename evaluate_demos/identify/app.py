@@ -13,20 +13,14 @@ answer = read_result("./answer.json")
 def evaluate():
     # 获取学生上传的结果json文件
     student_file = request.files.get("file")
-    if not student_file:
-        return jsonify({"error": "没有文件！"})
-
     # 读取结果
     student_results = read_result(student_file)
-
     # 计算分数
     score = get_score(answer, student_results)
-    scorep = round(score * 100, 2)
-
     # 返回分数
-    return jsonify({
-        "score": scorep
-    })
+    return{
+        "score": score
+    }
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=6000, debug=True)
