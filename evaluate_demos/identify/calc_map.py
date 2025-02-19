@@ -79,11 +79,6 @@ def compute_ap(gt_dict, detections, iou_threshold, category_id):
     return ap
 
 def get_score(teacher_answer, student_results):
-    """
-    根据教师答案和学生提交结果计算 mAP 得分
-    teacher_answer: 标准答案（dict格式，包含 'annotations' 字段）
-    student_results: 学生提交的检测结果（dict格式，包含检测框、类别和置信度等信息）
-    """
     # 构造以图像和类别为层级的真实标注字典
     gt_dict = defaultdict(lambda: defaultdict(list))
     for ann in teacher_answer['annotations']:
@@ -109,7 +104,6 @@ def get_score(teacher_answer, student_results):
 
 if __name__ == '__main__':
     teacher_answer = read_json("./answer.json")
-    student_results = read_json("./student_results.json")
+    student_results = read_json("/www/datasci/uploads/studwork.json")
     score = get_score(teacher_answer, student_results)
-    print('mAP:', score)
- 
+    print(score)

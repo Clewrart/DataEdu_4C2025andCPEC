@@ -11,7 +11,7 @@
       <router-link to="/about" class="nav-link" tag="a" target="_blank">关于系统</router-link>
     </div>
     <div class="version-container">
-      <span class="verspan">测试系统 v1.250219 beta</span>
+      <span class="verspan">测试系统 v1.250219_json beta</span>
     </div>
 
   </div>

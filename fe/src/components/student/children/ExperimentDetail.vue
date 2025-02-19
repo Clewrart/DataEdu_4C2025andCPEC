@@ -203,12 +203,28 @@ const uploadDocumentVisible = ref(false)
 const uploadDocumentLoading = ref(false)
 
 function handleFileChange(e) {
-    // uploadDocumentFile.value = e.raw;
-    if (experiment.value.uploadFileType === '.csv' || experiment.value.uploadFileType === '.json') {
-        uploadFileList.value=[]
+    const file = e.raw;
+
+    // 检查文件类型
+    if (experiment.value.uploadFileType === '.csv') {
+        uploadFileList.value = []; 
+    } else if (experiment.value.uploadFileType === '.json') {
+        const reader = new FileReader();
+        
+        reader.onload = function(event) {
+            try {
+                const jsonData = JSON.parse(event.target.result); // 解析JSON
+                console.log("解析后的 JSON 数据:", jsonData);
+                uploadFileList.value = [jsonData];  // 存JSON数据
+            } catch (error) {
+                console.error("JSON 解析失败:", error);
+            }
+        };
+        reader.readAsText(file);  // 读取文件为文本
     }
-    uploadFileList.value.push(e.raw)
+    uploadFileList.value.push(file);  // 存储文件对象
 }
+
 
 async function handleUploadDocument() {
     uploadDocumentLoading.value = true;
