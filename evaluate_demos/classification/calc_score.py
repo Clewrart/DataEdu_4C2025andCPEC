@@ -1,7 +1,5 @@
 from handle_csv import read_csv
 
-
-
 def calc_score(answer:dict,real:dict): 
     base=len(answer)
     count=0
