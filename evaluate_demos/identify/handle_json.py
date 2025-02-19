@@ -1,5 +1,5 @@
 import json
-
+## 读取json文件
 def read_json(file):
     if isinstance(file, str):
         with open(file, 'r') as f:

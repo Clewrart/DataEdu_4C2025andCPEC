@@ -3,7 +3,7 @@ from collections import defaultdict
 from handle_json import read_json
 
 def compute_iou(box1, box2):
-    # 将 xywh 格式转换为 xyxy 格式
+    # 将xywh格式转换为xyxy格式
     x1, y1, w1, h1 = box1
     box1 = [x1, y1, x1 + w1, y1 + h1]
     x2, y2, w2, h2 = box2
@@ -21,6 +21,8 @@ def compute_iou(box1, box2):
     inter_area = (inter_right - inter_left) * (inter_bottom - inter_top)
     area1 = (box1[2] - box1[0]) * (box1[3] - box1[1])
     area2 = (box2[2] - box2[0]) * (box2[3] - box2[1])
+
+    # 肌酸并集区域
     union_area = area1 + area2 - inter_area
     if union_area == 0:
         return 0.0
@@ -30,22 +32,20 @@ def compute_ap(gt_dict, detections, iou_threshold, category_id):
     tp = []
     fp = []
     total_gt = 0
-    # 统计该类别所有图像中的真实标注数
+    # 统计所有图像中的符合教师答案数
     for img_id in gt_dict:
         total_gt += len(gt_dict[img_id].get(category_id, []))
     
-    # 按置信度降序排序检测结果
+    # 用score检测结果降序排序
     sorted_detections = sorted(
         [det for det in detections if det['category_id'] == category_id],
         key=lambda x: -x['score']
     )
 
-    # 初始化真实标注的匹配状态
+    # 教师答案的循环匹配
     gt_matched = defaultdict(list)
     for img_id in gt_dict:
         gt_matched[img_id] = [False] * len(gt_dict[img_id].get(category_id, []))
-    
-    # 遍历每个检测结果
     for det in sorted_detections:
         img_id = det['image_id']
         max_iou = 0.0
@@ -66,30 +66,30 @@ def compute_ap(gt_dict, detections, iou_threshold, category_id):
             tp.append(0)
             fp.append(1)
     
-    # 累计 TP 和 FP，计算召回率和精确率
+    # 累计TP和FP算召回率和精确率
     tp_cum = np.cumsum(tp)
     fp_cum = np.cumsum(fp)
     recall = tp_cum / (total_gt + 1e-6)
     precision = tp_cum / (tp_cum + fp_cum + 1e-6)
     
-    # 计算 AP
+    # 计算AP
     ap = 0.0
     for i in range(1, len(precision)):
         ap += (recall[i] - recall[i-1]) * precision[i]
     return ap
 
 def get_score(teacher_answer, student_results):
-    # 构造以图像和类别为层级的真实标注字典
+    # 生成教师答案字典
     gt_dict = defaultdict(lambda: defaultdict(list))
     for ann in teacher_answer['annotations']:
         img_id = ann['image_id']
         cat_id = ann['category_id']
         gt_dict[img_id][cat_id].append({'bbox': ann['bbox']})
     
-    # 获取所有类别
+    # 获取所有类
     categories = set(ann['category_id'] for ann in teacher_answer['annotations'])
     
-    # 设定 IoU 阈值，从 0.5 到 0.95，步长 0.05
+    # 设定IoU，0.5-0.95，步长0.05(严格)
     iou_thresholds = np.arange(0.5, 0.95, 0.05)
     aps = []
     for iou in iou_thresholds:

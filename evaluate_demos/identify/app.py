@@ -1,7 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from calc_map import get_score
-from handle_json import read_json
 import json
 
 app = Flask(__name__)
@@ -24,10 +23,10 @@ def detect():
     try:
         student_results = json.load(file)
     except Exception as e:
-        return jsonify({"error": "无效的 JSON 文件", "detail": str(e)}), 400
+        return jsonify({"error": "无效的JSON文件", "detail": str(e)}), 400
 
     score = get_score(teacher_answer, student_results)
-    scorepp = round(score * 100, 2)
+    scorepp = round(score * 400, 2)
     return jsonify({"score": scorepp})
 
 if __name__ == '__main__':
