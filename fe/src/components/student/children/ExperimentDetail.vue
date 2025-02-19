@@ -210,6 +210,7 @@ function handleFileChange(e) {
         uploadFileList.value = []; 
     } else if (experiment.value.uploadFileType === '.json') {
         const reader = new FileReader();
+        uploadFileList.value = []; 
         
         reader.onload = function(event) {
             try {
