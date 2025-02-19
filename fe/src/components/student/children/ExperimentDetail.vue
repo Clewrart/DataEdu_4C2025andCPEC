@@ -159,6 +159,7 @@ import {
 import { Plus, Back, Delete, Download } from "@element-plus/icons-vue"
 import { useRouter } from "vue-router"
 import index from "@compos/teacher/Index.vue";
+import { addUnit } from "element-plus/es/utils/index.mjs"
 
 const router = useRouter()
 const props = defineProps({
@@ -203,17 +204,16 @@ const uploadDocumentVisible = ref(false)
 const uploadDocumentLoading = ref(false)
 
 function handleFileChange(e) {
-    const file = e.raw;
-
-    // 检查文件类型
+   // uploadDocumentFile.value = e.raw;
     if (experiment.value.uploadFileType === '.csv') {
-        uploadFileList.value = []; 
-    } else if (experiment.value.uploadFileType === '.json') {
-        uploadFileList.value = []; 
+        uploadFileList.value=[]
+        uploadFileList.value.push(e.raw)
     }
-    uploadFileList.value.push(file);  // 存储文件对象
+    else if(experiment.value.uploadFileType === '.json') {
+        uploadFileList.value=[]
+    uploadFileList.value.push(e.raw)
 }
-
+}
 
 async function handleUploadDocument() {
     uploadDocumentLoading.value = true;

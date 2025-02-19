@@ -16,9 +16,9 @@ with open("./answer.json", "r") as f:
 @app.route('/identify', methods=["POST", "OPTIONS"])
 def detect():
     if request.method == "OPTIONS":
-        return jsonify({"message": "CORS preflight success"}), 200
+        return jsonify({"message": "CORS 跨域ok"}), 200
 
-    file = request.files.get("file")
+    file = request.files.get("files")
     if not file:
         return jsonify({"error": "未上传文件"}), 400
     try:
