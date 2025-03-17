@@ -111,7 +111,7 @@ function handlePaginationChange() {
 
 onMounted(async () => {
     await getStudentList();
-    document.title = "待选实验列表_数据科学与机器学习实验系统";
+    document.title = "待选实验列表_机器学习与图像处理综合教学实验平台";
 });
 
 function handleSearch() {

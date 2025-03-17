@@ -9,7 +9,7 @@
 import {onMounted} from "vue";
 
 onMounted(() => {
-    document.title = "关于数据科学与机器学习实验系统";
+    document.title = "关于机器学习与图像处理综合教学实验平台";
 });
 </script>
 <style scoped lang="less">

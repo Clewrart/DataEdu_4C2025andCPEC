@@ -85,7 +85,7 @@ function handleResize() {
 onMounted(() => {
     window.addEventListener("resize", handleResize);
     handleResize(); // 初始化时检查宽度
-    document.title = "学生主页_数据科学与机器学习实验系统";
+    document.title = "学生主页_机器学习与图像处理综合教学实验平台";
 });
 
 onBeforeUnmount(() => {

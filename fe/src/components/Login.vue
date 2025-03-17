@@ -105,7 +105,7 @@ function showMessage(type, message) {
   });
 }
 
-  document.title = "欢迎使用数据科学与机器学习实验系统";
+  document.title = "欢迎使用机器学习与图像处理综合教学实验平台";
 </script>
 
 

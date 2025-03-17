@@ -3,7 +3,7 @@
   <div class="top-nav">
     <div class="logo-container">
       <img src="./assets/logo.png" alt="系统logo" class="logo" />
-      <span class="system-name">数据科学与机器学习实验系统</span>
+      <span class="system-name">机器学习与图像处理综合教学实验平台</span>
     </div>
     <!--渲染a标实现新标签页打开-->
     <div class="nav-links">
@@ -11,7 +11,7 @@
       <router-link to="/about" class="nav-link" tag="a" target="_blank">关于系统</router-link>
     </div>
     <div class="version-container">
-      <span class="verspan">测试系统 v1.250219_json beta</span>
+      <span class="verspan">V1.0</span>
     </div>
 
   </div>

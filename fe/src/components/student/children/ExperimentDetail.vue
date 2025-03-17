@@ -333,7 +333,7 @@ onMounted(async () => {
     await getMyRank();
     await getCurrentRankList();
     await getStudentDocuments();
-    document.title = "实验详情_数据科学与机器学习实验系统";
+    document.title = "实验详情_机器学习与图像处理综合教学实验平台";
 })
 
 //超时禁用提交
