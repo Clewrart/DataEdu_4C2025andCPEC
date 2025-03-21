@@ -1,20 +1,15 @@
-<script setup>
+<script setup> 
 
+onMounted(() => {
+  document.title = "使用帮助";
+});
 </script>
 
 <template>
-  66666帮助页面
+  <iframe src="../assets/manual.pdf"
+>
+</iframe>
 </template>
-
-
-
-<script>
-export default {
-  mounted() {
-    document.title = "使用帮助";
-  }
-}
-</script>
 
 <style scoped lang="less">
 

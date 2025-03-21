@@ -17,7 +17,8 @@
     "vue-echarts": "^6.7.1",
     "vue-pdf": "^4.3.0",
     "vue-router": "^4.3.0",
-    "vue-slide-bar": "^1.2.0"
+    "vue-slide-bar": "^1.2.0",
+    "vue3-pdfjs": "^0.1.6"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",
