@@ -16,7 +16,10 @@ export default {
       src: "https://www.clewrart.top/content/uploadfile/202503/af481742539557.pdf",
     };
   },
-};
+  mounted() {
+    document.title = "关于平台";
+  }
+}
 </script>
 
 <style scoped>
