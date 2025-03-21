@@ -3,7 +3,7 @@
   <div class="top-nav">
     <div class="logo-container">
       <img src="./assets/logo.png" alt="系统logo" class="logo" />
-      <span class="system-name">机器学习与图像处理综合教学实验平台</span>
+      <span class="system-name"><a style="color:dodgerblue">慧图工坊</a>  机器学习与图像处理综合教学实验平台</span>
     </div>
     <!--渲染a标实现新标签页打开-->
     <div class="nav-links">
