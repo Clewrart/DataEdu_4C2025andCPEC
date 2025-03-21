@@ -1,16 +1,44 @@
-<script setup> 
-
-onMounted(() => {
-  document.title = "使用帮助";
-});
-</script>
-
 <template>
-  <iframe src="../assets/manual.pdf"
->
-</iframe>
+  <div class="app">
+    <div class="agreement_picture">
+      <div class="pdf">
+        <iframe :src="src" frameborder="0"></iframe>
+      </div>
+    </div>
+  </div>
 </template>
 
-<style scoped lang="less">
+<script>
+export default {
+  name: "PageOne",
+  data() {
+    return {
+      src: "https://www.clewrart.top/content/uploadfile/202503/af481742539557.pdf",
+    };
+  },
+};
+</script>
 
+<style scoped>
+.app, .agreement_picture {
+  width: 99vw;
+  height: 99vh;
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+}
+
+.pdf {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 99vw; 
+  height: 99vh; 
+}
+
+iframe {
+  width: 99%;
+  height: 99%;
+  border: none; 
+}
 </style>

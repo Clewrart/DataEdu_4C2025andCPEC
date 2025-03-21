@@ -105,7 +105,7 @@ function showMessage(type, message) {
   });
 }
 
-  document.title = "欢迎使用<br>慧图工坊_机器学习与图像处理综合教学实验平台";
+  document.title = "欢迎使用慧图工坊";
 </script>
 
 
