@@ -1,11 +1,9 @@
 <template>
-  <!--顶部导航栏 -->
   <div class="top-nav">
     <div class="logo-container">
       <img src="./assets/logo.png" alt="系统logo" class="logo" />
       <span class="system-name"> <router-link to="/about" style="color:dodgerblue;text-decoration: none;">慧图工坊</router-link>  机器学习与图像处理综合教学实验平台</span>
     </div>
-    <!--渲染a标实现新标签页打开-->
     <div class="nav-links">
       <router-link to="/help" class="nav-link" tag="a" target="_blank">使用帮助</router-link>
       <router-link to="/about" class="nav-link" tag="a" target="_blank">关于系统</router-link>
