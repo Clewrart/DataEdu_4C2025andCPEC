@@ -221,7 +221,7 @@ onMounted(async () => {
     await getExperiment();
     await getTeacherDocuments();
     await getCurrentRankList();
-    document.title = "教师实验编辑_机器学习与图像处理综合教学实验平台";
+    document.title = "教师实验编辑_慧图工坊";
 })
 </script>
 

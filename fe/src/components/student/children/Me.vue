@@ -93,7 +93,7 @@ function toDetail(id) {
 
 onMounted(() => {
         getMyExperiments();
-        document.title = "我的已选实验_机器学习与图像处理综合教学实验平台";
+        document.title = "我的实验_慧图工坊";
 })
 
 </script>

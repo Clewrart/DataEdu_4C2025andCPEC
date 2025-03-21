@@ -14,7 +14,7 @@
   onMounted(() => {
   window.addEventListener("resize", handleResize);
   handleResize(); // 初始化时检查宽度
-  document.title = "机器学习与图像处理综合教学实验平台使用帮助";
+  document.title = "慧图工坊使用帮助";
 });
 
 </script>
