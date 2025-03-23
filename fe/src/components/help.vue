@@ -13,11 +13,11 @@ export default {
   name: "PageOne",
   data() {
     return {
-      src: "https://www.clewrart.top/content/uploadfile/202503/af481742539557.pdf",
+      src: "https://www.clewrart.top/content/uploadfile/202503/ad031742633265.pdf",
     };
   },
   mounted() {
-    document.title = "关于平台";
+    document.title = "使用帮助";
   }
 }
 </script>
