@@ -212,7 +212,9 @@ function handleFileChange(e) {
     else if(experiment.value.uploadFileType === '.json') {
         uploadFileList.value=[]
     uploadFileList.value.push(e.raw)
-}
+    }
+
+    
 }
 
 async function handleUploadDocument() {
