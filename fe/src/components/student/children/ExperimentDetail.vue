@@ -203,19 +203,24 @@ const uploadFileList= ref([])
 const uploadDocumentVisible = ref(false)
 const uploadDocumentLoading = ref(false)
 
-function handleFileChange(e) {
-   // uploadDocumentFile.value = e.raw;
-    if (experiment.value.uploadFileType === '.csv') {
-        uploadFileList.value=[]
-        uploadFileList.value.push(e.raw)
-    }
-    else if(experiment.value.uploadFileType === '.json') {
-        uploadFileList.value=[]
-    uploadFileList.value.push(e.raw)
+function handleFileChange(file, fileList) {
+    const fileType = experiment.value?.uploadFileType || '';
+    if (!file || !file.raw) {
+        ElMessage.error("文件读取失败");
+        return;
     }
 
-    
+    if (fileType === '.csv' || fileType === '.json') {
+        uploadFileList.value = [file.raw];
+    } else if (fileType === 'image/*') {
+        //多图模式
+        uploadFileList.value = fileList.map(f => f.raw);
+    } else {
+        ElMessage.error("不支持的文件类型");
+    }
 }
+
+
 
 async function handleUploadDocument() {
     uploadDocumentLoading.value = true;
