@@ -22,13 +22,16 @@ def seg():
                 answer_file_dict[key],
                 student_file_dict[key]
             )
-    #
             total_dice += dice
             print(dice)
     # 百分制化分数
     #score = round(total_dice/len(answer_file_dict) * 10000 + 50)
     #score = (1.0 * total_dice / len(answer_file_dict)) * 100
-    score = round(total_dice / len(answer_file_dict) * 100,2)
+    if len(answer_file_dict) == 0:
+        score = 0
+    else:
+        score = round(total_dice / len(answer_file_dict) * 100, 2)
+
     return {
         "score": score
     }
