@@ -51,13 +51,13 @@ async function waitLogin() {
 
   switch (true) {
     case !username.value || !password.value:
-      status = "EMPTY_CREDENTIALS"; // 用户名或密码为空
+      status = "EMPTY_CREDENTIALS"; //用户名或密码为空
       break;
     case !agreeTerms.value || !agreeNoSharing.value:
-      status = "AGREEMENT_REQUIRED"; // 未同意条款
+      status = "AGREEMENT_REQUIRED"; //未同意条款
       break;
     default:
-      status = "VALID"; // 输入有效
+      status = "VALID"; //输入有效
   }
 
   switch (status) {
@@ -89,13 +89,32 @@ async function waitLogin() {
       showMessage("success", "登录成功");
       router.push({name: info.role});
     } else {
-      showMessage("error", "用户名或密码错误");
+      let countdown = 5;
+      const timer = setInterval(() => {
+        showMessage("error", `用户名或密码错误，${countdown} 秒后将自动刷新页面重试`);
+        countdown--;
+
+        if (countdown < 0) {
+          clearInterval(timer);
+          location.reload();
+        }
+      }, 1000);
+
       console.log("登录失败响应：", res);
     }
   } catch (error) {
-    console.error("请求过程中发生错误：", error);
-    showMessage("error", "登录请求失败，请稍后再试");
-  }
+  console.error("请求过程中发生错误：", error);
+  let countdown = 5;
+  const timer = setInterval(() => {
+    showMessage("error", `登录请求失败，${countdown} 秒后刷新页面`);
+    countdown--;
+    if (countdown < 0) {
+      clearInterval(timer);
+      location.reload();
+    }
+  }, 1000);
+}
+
 }
 
 function showMessage(type, message) {
