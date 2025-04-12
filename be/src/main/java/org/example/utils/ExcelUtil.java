@@ -41,7 +41,7 @@ public class ExcelUtil {
 
   // 通用的读取 Excel 的方法
   private static <T> List<T> readExcelFromInputStream(InputStream inputStream,
-      Class<T> targetType) {
+                                                      Class<T> targetType) {
     List<T> objectList = new ArrayList<>();
 
     try (Workbook workbook = new XSSFWorkbook(inputStream)) {
@@ -65,7 +65,24 @@ public class ExcelUtil {
 
           Cell cell = row.getCell(i);
           if (cell != null) {
-            String value = cell.toString();
+            // 获取字段类型
+            Class<?> fieldType = field.getType();
+
+            // 获取单元格值
+            Object value = getCellValue(cell, fieldType);
+
+            // 如果字段是 Integer 类型，尝试从 String 转换为 Integer
+            if (fieldType == Integer.class || fieldType == int.class) {
+              if (value instanceof String) {
+                try {
+                  value = Integer.parseInt((String) value);
+                } catch (NumberFormatException e) {
+                  value = 0; // 默认值，或记录错误
+                }
+              }
+            }
+
+            // 设置对象的字段值
             field.set(obj, value);
           }
         }
@@ -81,6 +98,7 @@ public class ExcelUtil {
   }
 
   // 获取单元格值的方法
+  // 获取单元格值的方法
   private static Object getCellValue(Cell cell, Class<?> fieldType) {
     switch (cell.getCellType()) {
       case STRING:
@@ -88,8 +106,10 @@ public class ExcelUtil {
       case NUMERIC:
         if (fieldType == int.class || fieldType == Integer.class) {
           return (int) cell.getNumericCellValue();
-        } else if (fieldType == double.class || fieldType == Double.class) {
-          return cell.getNumericCellValue();
+        /*} else if (fieldType == double.class || fieldType == Double.class) {
+          return cell.getNumericCellValue();*/
+        } else if (fieldType == String.class) {
+          return String.valueOf(cell.getNumericCellValue());
         }
         return cell.getNumericCellValue();
       case BOOLEAN:
@@ -98,6 +118,7 @@ public class ExcelUtil {
         return null;
     }
   }
+
 
   public static void main(String[] args) {
     String filePath = "your_file_path";

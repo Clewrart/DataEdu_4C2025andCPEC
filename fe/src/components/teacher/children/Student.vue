@@ -115,8 +115,9 @@
             </div>
             <template #tip>
                 <div class="el-upload__tip">
-                    导入学生的excel表格。表格文件的sheet1表头应包含id、学号、姓名
-                </div>
+                    导入学生的excel表格。<br>
+                    表格文件的sheet1表头应包含id、学号、姓名；<br>
+                    <b>注意学号需要使用文本格式，在excel单元格左上角应出现绿色小三角，如果没有请在学号前加入'号</b></div>
                 <div class="uploadFileName" v-if="studentExcel">
                     <span class="label">当前选择的文件：</span><span class="name">{{ studentExcel.name }}</span>
                 </div>
@@ -314,22 +315,27 @@ const uploadStudentButtonLoading=ref(false)
 
 function uploadStudentExcel() {
     if (!studentExcel.value) {
-        ElMessage({ message: "请选择文件", type: "error" })
-        return
+        ElMessage({ message: "请选择文件", type: "error" });
+        return;
     }
+
     uploadStudentButtonLoading.value = true;
-    
-    uploadStudent(studentExcel.value).then((res) => {
+
+    const formData = new FormData();
+    formData.append("excel", studentExcel.value);
+
+    uploadStudent(formData).then((res) => {
         if (res.data.code === 200) {
-            ElMessage({ message: "导入成功", type: "success" })
-            importVisible.value = false
+            ElMessage({ message: "导入成功", type: "success" });
+            importVisible.value = false;
             getStudentList();
         } else {
-            ElMessage({ message: "导入失败", type: "error" })
+            ElMessage({ message: res.data.msg || "导入失败", type: "error" });
         }
         uploadStudentButtonLoading.value = false;
     }).catch(err => {
-        ElMessage({ message: "导入失败", type: "error" })
+        console.error("上传出错：", err);
+        ElMessage({ message: "导入失败", type: "error" });
         uploadStudentButtonLoading.value = false;
     });
 }

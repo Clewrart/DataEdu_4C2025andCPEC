@@ -6,12 +6,12 @@
     <el-table :data="tableData" :scrollbar-always-on="true" style="width: 100%">
         <el-table-column prop="id" label="ID" />
         <el-table-column prop="name" label="姓名" />
-        <el-table-column prop="description" label="要求/说明" width="120px" />
+        <el-table-column prop="description" label="要求/说明" width="230px" />
         <el-table-column prop="teacherId" label="教师" :formatter="teacherFormatter" />
         <el-table-column prop="uploadFileType" label="上传文件类型" width="120px" />
         <el-table-column prop="totalUploadCount" label="可上传次数" width="120px" />
-        <el-table-column prop="deadlineTime" label="截止时间" />
-        <el-table-column prop="createdTime" label="创建时间" />
+        <el-table-column prop="deadlineTime" label="截止时间" width="90px" />
+        <el-table-column prop="createdTime" label="创建时间" width="90px" />
         <el-table-column label="操作" fixed="right" width="100px">
             <template #default="scope">
                 <el-popconfirm confirm-button-text="确定" cancel-button-text="取消" :icon="InfoFilled" icon-color="#ff6c37"

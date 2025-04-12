@@ -8,10 +8,9 @@
         <el-table :data="tableData" :scrollbar-always-on="true" style="width: 100%">
             <el-table-column prop="id" label="ID" width="40"/>
             <el-table-column prop="name" label="实验名" width="80"/>
-            <el-table-column prop="description" label="要求/说明" width="100px" />
+            <el-table-column prop="description" label="要求/说明" width="230px" />
             <el-table-column prop="uploadFileType" label="上传文件类型" width="120px" />
-            <el-table-column prop="judgeUrl" label="评判接口地址" width="120px" />
-            <el-table-column prop="totalUploadCount" label="可上传次数" width="100px" />
+            <el-table-column prop="judgeUrl" label="评判接口地址" width="220px" />
             <el-table-column prop="deadlineTime" label="截止时间" />
             <el-table-column prop="createdTime" label="创建时间" />
             <el-table-column label="操作" fixed="right" width="90px">

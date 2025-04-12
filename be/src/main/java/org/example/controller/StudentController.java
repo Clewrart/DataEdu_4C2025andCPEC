@@ -48,8 +48,9 @@ public class StudentController {
   }
 
   @PostMapping("/upload")
-  public String upload(MultipartFile excel) {
-    if (studentService.upload(excel)) {
+  public String upload( @RequestParam("excel") MultipartFile file) {
+    System.out.println("收到文件: " + file.getOriginalFilename());
+    if (studentService.upload(file)) {
 
       return ResponseUtil.success("导入成功");
     } else {
