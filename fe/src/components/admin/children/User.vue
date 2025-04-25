@@ -1,6 +1,6 @@
 <template>
     <div class="head">
-        <el-input type="text" v-model="keyword" style="margin-right:15px;"> </el-input>
+        <el-input type="text" v-model="keyword" style="margin-right:15px;" </el-input>
             <el-button type="primary" :icon="Search" @click="handleSearch">搜索</el-button>
             <!-- <el-button type="primary" :icon="Plus" @click="addCallBack">添加</el-button> -->
 
@@ -10,9 +10,9 @@
         <el-table-column prop="username" label="用户名" />
         <el-table-column prop="role" label="角色" :formatter="formatRole" />
         <el-table-column prop="createdTime" label="创建时间" />
-        <el-table-column label="操作" fixed="right" width="100px">
+        <el-table-column label="操作" fixed="right" width="200px">
             <template #default="scope">
-                <el-button type="primary" :icon="Edit" @click="editCallBack(scope.row)" style="width: 87px;">修改密码</el-button>
+                <el-button type="primary" :icon="Edit" @click="editCallBack(scope.row)">修改密码</el-button>
                 <!-- <el-popconfirm confirm-button-text="确定" cancel-button-text="取消" :icon="InfoFilled" icon-color="#ff6c37"
                     title="确定删除吗?" @confirm="handleDelete(scope.row.id)" @cancel="cancelEvent">
                     <template #reference>
@@ -57,7 +57,7 @@
     </div>
 
 
-    <el-dialog v-model="editVisible" width="350" title="修改" :before-close="handleClose">
+    <el-dialog v-model="editVisible" width="500" title="修改" :before-close="handleClose">
         <el-input type="text" v-model="editForm.username" placeholder="" disabled />
         <el-input type="password" v-model="editForm.password" placeholder="密码,不填则不会修改" />
         <!-- <el-select v-model="editForm.role" placeholder="Select" style="width: 240px">
@@ -73,7 +73,7 @@
         </template>
     </el-dialog>
 
-    <el-dialog v-model="addVisible" width="350" title="添加" :before-close="handleClose">
+    <el-dialog v-model="addVisible" width="500" title="添加" :before-close="handleClose">
 
         <el-input type="text" v-model="addForm.username" placeholder="" />
         <el-input type="password" v-model="addForm.password" placeholder="" />
@@ -90,7 +90,7 @@
             </div>
         </template>
     </el-dialog>
-    <el-dialog v-model="imageListVisible" width="350" title="添加" :before-close="handleClose">
+    <el-dialog v-model="imageListVisible" width="500" title="添加" :before-close="handleClose">
         <div class="item" v-for="item in imageList" :key="item">
             <el-image :src="item" style="width: 100px; height: 100px" />
         </div>
@@ -151,11 +151,17 @@ function handlePaginationChange() {
 
 onMounted(async () => {
     await getStudentList();
-    document.title = "用户管理_慧图工坊";
 });
 
 const editVisible = ref(false);
 const addVisible = ref(false);
+
+
+
+
+
+
+
 const editForm = ref({
 
 })
@@ -230,7 +236,6 @@ const imageList = ref([])
     width: 50%;
     display: flex;
     justify-content: space-between;
-    margin-left: 30px;
 }
 
 .pager {
@@ -246,12 +251,10 @@ const imageList = ref([])
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 90px;
-            margin-left: 10px;
+            width: 100px;
         }
 
         .total {
-            width: 50px;
             display: flex;
             padding: 10px;
             align-items: center;
@@ -301,19 +304,6 @@ const imageList = ref([])
             width: 400px;
             font-weight: bold;
         }
-    }
-}
-
-@media (max-width: 768px) {
-    .head{
-        width: 90%;
-    }
-    .content{
-        width: 90%;
-        margin-left: 0px;
-    }
-    .head el-input{
-        width: 100%;
     }
 }
 </style>

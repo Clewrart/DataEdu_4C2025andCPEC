@@ -22,7 +22,7 @@ def compute_iou(box1, box2):
     area1 = (box1[2] - box1[0]) * (box1[3] - box1[1])
     area2 = (box2[2] - box2[0]) * (box2[3] - box2[1])
 
-    # 肌酸并集区域
+    # 计算并集区域
     union_area = area1 + area2 - inter_area
     if union_area == 0:
         return 0.0

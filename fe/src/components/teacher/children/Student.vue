@@ -1,52 +1,50 @@
 <template>
     <div class="head">
-            <el-input type="text" v-model="keyword" style="margin-right:15px;"></el-input>
-            <el-button type="primary" :icon="Search" @click="handleSearch">搜索</el-button>
+            <div class="input">
+                <el-input type="text" v-model="keyword" ></el-input>
+            </div>
+            <div class="buttons">
+                <el-button type="primary" :icon="Search" @click="handleSearch">搜索</el-button>
             <el-button type="primary" :icon="Plus" @click="addCallBack">添加</el-button>
-    </div>
-    <div class="head" style="margin-top: 10px;">
-            <div class="buttons">
-                <el-button type="success" :icon="Plus" @click="importVisible = true">导入</el-button>
-                <el-button type="warning" :icon="Select" @click="handleMultipleSelect" v-if="!selectToolsVisible">批量选择</el-button>
-              <el-button type="info" :icon="Close" @click="selectToolsVisible=false" v-if="selectToolsVisible">取消选择</el-button>
+            <el-button type="success" :icon="Plus" @click="importVisible = true">导入</el-button>
+            <el-button type="warning" :icon="Select" @click="handleMultipleSelect">批量选择</el-button>
+            <el-button type="info" :icon="Close" @click="selectToolsVisible=false" v-if="selectToolsVisible">取消选择</el-button>
+            
+            <el-button type="primary" :icon="Finished" @click="handleSelectAll" v-if="selectToolsVisible" >全选</el-button>
+            <el-button type="info" :icon="SemiSelect" @click="handleSelectNone" v-if="selectToolsVisible" >全不选</el-button>
+            
+            <el-popconfirm v-if="selectToolsVisible" confirm-button-text="确定" cancel-button-text="取消" :icon="InfoFilled" icon-color="#ff6c37"
+                    title="确定删除已勾选的学生吗?" @confirm="handleDeleteBatch" @cancel="cancelEvent">
+                    <template #reference>
+                        <el-button  type="danger" :icon="Delete">删除已选</el-button>
+                    </template>
+            </el-popconfirm>
             </div>
+            
+
     </div>
-    <div class="head" style="margin-top: 10px;">
-            <div class="buttons">
-                <el-button type="primary" :icon="Finished" @click="handleSelectAll" v-if="selectToolsVisible" >全选</el-button>
-                <el-button type="info" :icon="SemiSelect" @click="handleSelectNone" v-if="selectToolsVisible" >全不选</el-button>
-                <el-popconfirm v-if="selectToolsVisible" confirm-button-text="确定" cancel-button-text="取消" :icon="InfoFilled" icon-color="#ff6c37"
-                        title="确定删除已勾选的学生吗?" @confirm="handleDeleteBatch" @cancel="cancelEvent">
-                        <template #reference>
-                            <el-button  type="danger" :icon="Delete">删除已选</el-button>
-                        </template>
+    <el-table :data="tableData" :scrollbar-always-on="true" style="width: 100%">
+        <el-table-column label="是否选择" v-if="selectToolsVisible">
+             <template #default="scope">
+                <el-checkbox v-model="scope.row.selected" size="large" />
+             </template>
+        </el-table-column>
+        <el-table-column prop="id" label="ID" />
+        <el-table-column prop="number" label="学号" />
+        <el-table-column prop="name" label="姓名" />
+        <el-table-column prop="createdTime" label="创建时间" />
+        <el-table-column label="操作" fixed="right" width="200px">
+            <template #default="scope">
+                <el-button type="primary" :icon="Edit" @click="editCallBack(scope.row)">修改</el-button>
+                <el-popconfirm confirm-button-text="确定" cancel-button-text="取消" :icon="InfoFilled" icon-color="#ff6c37"
+                    title="确定删除吗?" @confirm="handleDelete(scope.row.id)" @cancel="cancelEvent">
+                    <template #reference>
+                        <el-button type="danger" :icon="Delete" @click="">删除</el-button>
+                    </template>
                 </el-popconfirm>
-            </div>
-    </div>
-    <div class="content" style="margin-left: 30px;margin-right: 30px;">
-        <el-table :data="tableData" :scrollbar-always-on="true" style="width: 100%">
-            <el-table-column label="是否选择" v-if="selectToolsVisible">
-                <template #default="scope">
-                    <el-checkbox v-model="scope.row.selected" size="large" />
-                </template>
-            </el-table-column>
-            <el-table-column prop="id" label="ID" />
-            <el-table-column prop="number" label="学号" />
-            <el-table-column prop="name" label="姓名" />
-            <el-table-column prop="createdTime" label="创建时间" />
-            <el-table-column label="操作" fixed="right" width="90px">
-                <template #default="scope">
-                    <el-button type="primary" :icon="Edit" @click="editCallBack(scope.row)">修改</el-button><span class="span1"><br></span>
-                    <el-popconfirm confirm-button-text="确定" cancel-button-text="取消" :icon="InfoFilled" icon-color="#ff6c37"
-                        title="确定删除吗?" @confirm="handleDelete(scope.row.id)" @cancel="cancelEvent">
-                        <template #reference>
-                            <el-button type="danger" :icon="Delete" @click="">删除</el-button>
-                        </template>
-                    </el-popconfirm>
-                </template>
-            </el-table-column>
-        </el-table>
-    </div>
+            </template>
+        </el-table-column>
+    </el-table>
     <div class="pager">
         <el-pagination v-model:current-page="currentPage" v-model:page-size="currentSize"
             layout=" prev, pager, next,slot" @current-change="handlePaginationChange" :total="total">
@@ -81,7 +79,7 @@
     </div>
 
 
-    <el-dialog v-model="editVisible" width="350" title="修改" :before-close="handleClose">
+    <el-dialog v-model="editVisible" width="500" title="修改" :before-close="handleClose">
         <el-input type="text" v-model="editForm.number" placeholder="学号" />
         <el-input type="text" v-model="editForm.name" placeholder="姓名" />
         <template #footer>
@@ -94,7 +92,7 @@
         </template>
     </el-dialog>
 
-    <el-dialog v-model="addVisible" width="350" title="添加" :before-close="handleClose">
+    <el-dialog v-model="addVisible" width="500" title="添加" :before-close="handleClose">
         <el-input type="text" v-model="addForm.number" placeholder="学号" />
         <el-input type="text" v-model="addForm.name" placeholder="姓名" />
         <template #footer>
@@ -106,7 +104,7 @@
             </div>
         </template>
     </el-dialog>
-    <el-dialog v-model="importVisible" width="350" title="通过Excel表格导入学生" :before-close="handleClose">
+    <el-dialog v-model="importVisible" width="500" title="通过Excel表格导入学生" :before-close="handleClose">
         <el-upload class="upload-demo" :on-change="handleFileChange" :show-file-list="false" :auto-upload="false" drag
             :multiple="false" accept=".xls,.xlsx">
             <el-icon class="el-icon--upload"><upload-filled /></el-icon>
@@ -115,9 +113,8 @@
             </div>
             <template #tip>
                 <div class="el-upload__tip">
-                    导入学生的excel表格。<br>
-                    表格文件的sheet1表头应包含id、学号、姓名；<br>
-                    <b>注意学号需要使用文本格式，在excel单元格左上角应出现绿色小三角，如果没有请在学号前加入'号</b></div>
+                    导入学生的excel表格。表格文件的sheet1表头应包含id、学号、姓名
+                </div>
                 <div class="uploadFileName" v-if="studentExcel">
                     <span class="label">当前选择的文件：</span><span class="name">{{ studentExcel.name }}</span>
                 </div>
@@ -142,7 +139,7 @@
 import { ref, onMounted } from "vue";
 import { listItem, deleteItem, updateItem, addItem, uploadStudent ,deleteBatch} from "@api/student";
 import { ElMessage } from "element-plus";
-import { Search, Plus, Edit, Delete ,Select, Finished, SemiSelect, Close} from "@element-plus/icons-vue"
+import { Search, Plus, Edit, Delete ,Select, Finished, SemiSelect} from "@element-plus/icons-vue"
 const tableData = ref([]);
 
 const keyword = ref("");
@@ -205,7 +202,6 @@ function handlePaginationChange() {
 onMounted(async () => {
     await getStudentList();
     addForm.value = shallowCopyObjectWithEmptyValues(tableData.value[0]);
-    document.title = "学生管理_慧图工坊";
 });
 
 const editVisible = ref(false);
@@ -300,42 +296,31 @@ const studentExcel = ref(null)
 
 const importVisible = ref(false)
 function handleFileChange(e) {
-    if (!e || !e.raw) {
-        console.error('Invalid file object:', e);
-        return;
-    }
-    const file = e.raw;
-    console.log('File name:', file.name); // 直接访问属性
-    console.log('File size:', file.size); // 直接访问属性
-    studentExcel.value = file;
-    console.log('output-studentExcel.value', studentExcel.value);
+    console.log(`output-e`, e)
+    studentExcel.value = e.raw;
+    console.log(`output-studentExcel.value`, studentExcel.value)
 }
 
 const uploadStudentButtonLoading=ref(false)
 
 function uploadStudentExcel() {
     if (!studentExcel.value) {
-        ElMessage({ message: "请选择文件", type: "error" });
-        return;
+        ElMessage({ message: "请选择文件", type: "error" })
+        return
     }
-
     uploadStudentButtonLoading.value = true;
-
-    const formData = new FormData();
-    formData.append("excel", studentExcel.value);
-
-    uploadStudent(formData).then((res) => {
+    
+    uploadStudent(studentExcel.value).then((res) => {
         if (res.data.code === 200) {
-            ElMessage({ message: "导入成功", type: "success" });
-            importVisible.value = false;
+            ElMessage({ message: "导入成功", type: "success" })
+            importVisible.value = false
             getStudentList();
         } else {
-            ElMessage({ message: res.data.msg || "导入失败", type: "error" });
+            ElMessage({ message: "导入失败", type: "error" })
         }
         uploadStudentButtonLoading.value = false;
     }).catch(err => {
-        console.error("上传出错：", err);
-        ElMessage({ message: "导入失败", type: "error" });
+        ElMessage({ message: "导入失败", type: "error" })
         uploadStudentButtonLoading.value = false;
     });
 }
@@ -346,10 +331,9 @@ function uploadStudentExcel() {
 
 <style lang="less" scoped>
 .head {
-    width: 50%;
+    width: 100%;
     display: flex;
     justify-content: space-around;
-    margin-left: 30px;
     .input{
         flex: 2;
         margin-right: 10px;
@@ -372,12 +356,10 @@ function uploadStudentExcel() {
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 90px;
-            margin-left: 10px;
+            width: 100px;
         }
 
         .total {
-            width: 50px;
             display: flex;
             padding: 10px;
             align-items: center;
@@ -440,19 +422,6 @@ function uploadStudentExcel() {
     .label{
         color: #999;
         font-weight: bold;
-    }
-}
-
-@media (max-width: 768px) {
-    .head{
-        width: 90%;
-    }
-    .content{
-        width: 90%;
-        margin-left: 0px;
-    }
-    .head el-input{
-        width: 100%;
     }
 }
 </style>

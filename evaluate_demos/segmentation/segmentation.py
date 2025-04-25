@@ -37,7 +37,7 @@ def dice_coefficient(y_true, y_pred):
         y_true = (y_true > 128).astype(np.uint8)
         y_pred = (y_pred > 128).astype(np.uint8)
 
-    intersection = np.sum(y_true * y_pred)#计算像素级的交集
+    intersection = np.sum(y_true * y_pred)#计算像素交集
     union = np.sum(y_true) + np.sum(y_pred)#计算并集
     return 2.0 * intersection / union if union > 0 else 1.0
 
