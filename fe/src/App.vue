@@ -9,7 +9,8 @@
       <router-link to="/about" class="nav-link" tag="a" target="_blank">关于系统</router-link>
     </div>
     <div class="version-container">
-      <span class="verspan">V1.0</span>
+      <img class="logo" src="https://www.clewrart.top/content/uploadfile/202506/35dd1750933644.png">
+      <img width="240px" height="60px" src="https://www.clewrart.top/content/uploadfile/202506/e73c1750933679.png">
     </div>
 
   </div>
@@ -36,8 +37,8 @@
 }
 
 .logo {
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
   margin-right: 10px;
 }
 
