@@ -21,6 +21,10 @@ const routes = [
             {
                 path: "experiment",
                 component: () => import("@compos/admin/children/Experiment.vue")
+            },
+            {
+                path: "check",
+                component: () => import("@compos/admin/children/check.vue")
             }
 
         ]

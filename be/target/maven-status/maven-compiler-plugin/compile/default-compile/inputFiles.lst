@@ -1,42 +1,49 @@
-D:\N01_CSTRecourse\m06_学术 项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\service\ExperimentService.java
-D:\N01_CSTRecourse\m06_学术 项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\controller\StudentController.java
-D:\N01_CSTRecourse\m06_学术 项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\filter\TokenFilter.java
-D:\N01_CSTRecourse\m06_学术 项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\service\impl\ExperimentServiceImpl.java
-D:\N01_CSTRecourse\m06_学术 项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\entity\ExperimentStudent.java
-D:\N01_CSTRecourse\m06_学术 项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\utils\FileUtil.java
-D:\N01_CSTRecourse\m06_学术 项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\config\SwaggerConfig.java
-D:\N01_CSTRecourse\m06_学术 项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\entity\Experiment.java
-D:\N01_CSTRecourse\m06_学术 项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\utils\TimeUtil.java
-D:\N01_CSTRecourse\m06_学术 项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\service\impl\TeacherServiceImpl.java
-D:\N01_CSTRecourse\m06_学术 项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\controller\FileController.java
-D:\N01_CSTRecourse\m06_学术 项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\mapper\TeacherMapper.java
-D:\N01_CSTRecourse\m06_学术 项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\entity\Document.java
-D:\N01_CSTRecourse\m06_学术 项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\mapper\ExperimentStudentMapper.java
-D:\N01_CSTRecourse\m06_学术 项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\mapper\ExperimentMapper.java
-D:\N01_CSTRecourse\m06_学术 项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\controller\TeacherController.java
-D:\N01_CSTRecourse\m06_学术 项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\service\impl\ExperimentStudentServiceImpl.java
-D:\N01_CSTRecourse\m06_学术 项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\mapper\DocumentMapper.java
-D:\N01_CSTRecourse\m06_学术 项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\entity\User.java
-D:\N01_CSTRecourse\m06_学术 项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\mapper\UserMapper.java
-D:\N01_CSTRecourse\m06_学术 项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\controller\DemoJudgeController.java
-D:\N01_CSTRecourse\m06_学术 项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\controller\UserController.java
-D:\N01_CSTRecourse\m06_学术 项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\controller\DocumentController.java
-D:\N01_CSTRecourse\m06_学术 项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\utils\PasswordUtil.java
-D:\N01_CSTRecourse\m06_学术 项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\entity\Student.java
-D:\N01_CSTRecourse\m06_学术 项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\service\impl\DocumentServiceImpl.java
-D:\N01_CSTRecourse\m06_学术 项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\service\UserService.java
-D:\N01_CSTRecourse\m06_学术 项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\utils\ResponseUtil.java
-D:\N01_CSTRecourse\m06_学术 项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\service\StudentService.java
-D:\N01_CSTRecourse\m06_学术 项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\utils\TokenUtil.java
-D:\N01_CSTRecourse\m06_学术 项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\utils\ExcelUtil.java
-D:\N01_CSTRecourse\m06_学术 项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\controller\ExperimentController.java
-D:\N01_CSTRecourse\m06_学术 项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\controller\ExperimentStudentController.java
-D:\N01_CSTRecourse\m06_学术 项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\service\impl\StudentServiceImpl.java
-D:\N01_CSTRecourse\m06_学术 项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\Application.java
-D:\N01_CSTRecourse\m06_学术 项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\utils\JsonUtil.java
-D:\N01_CSTRecourse\m06_学术 项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\entity\Teacher.java
-D:\N01_CSTRecourse\m06_学术 项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\service\ExperimentStudentService.java
-D:\N01_CSTRecourse\m06_学术 项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\service\DocumentService.java
-D:\N01_CSTRecourse\m06_学术 项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\mapper\StudentMapper.java
-D:\N01_CSTRecourse\m06_学术 项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\service\impl\UserServiceImpl.java
-D:\N01_CSTRecourse\m06_学术 项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\service\TeacherService.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\entity\User.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\entity\ExperimentStudent.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\mapper\TeacherMapper.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\mapper\StudentMapper.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\entity\dto\ExperimentStatsDTO.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\controller\ExperimentController.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\service\TeacherService.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\service\CheckService.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\Application.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\utils\ResponseUtil.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\controller\DemoJudgeController.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\service\impl\UserServiceImpl.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\entity\dto\ScoreDistributionDTO.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\entity\dto\SubmissionTrendDTO.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\service\UserService.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\entity\Student.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\controller\UserController.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\service\impl\ExperimentStudentServiceImpl.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\entity\Teacher.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\mapper\ExperimentMapper.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\service\impl\TeacherServiceImpl.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\service\ExperimentStudentService.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\controller\ExperimentStudentController.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\mapper\DocumentMapper.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\mapper\UserMapper.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\service\impl\ExperimentServiceImpl.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\controller\DocumentController.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\controller\StudentController.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\service\impl\DocumentServiceImpl.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\utils\ExcelUtil.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\utils\FileUtil.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\service\StudentService.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\utils\TokenUtil.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\mapper\ExperimentStudentMapper.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\utils\JsonUtil.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\entity\Document.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\entity\Experiment.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\service\impl\CheckServiceImpl.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\service\ExperimentService.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\utils\PasswordUtil.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\config\SwaggerConfig.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\filter\TokenFilter.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\controller\TeacherController.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\controller\CheckController.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\utils\TimeUtil.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\service\DocumentService.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\controller\FileController.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\utils\ResultUtil.java
+D:\N01_CSTRecourse\m06_学术_项目\202504图像平台\01平台代码\datasci\be\src\main\java\org\example\service\impl\StudentServiceImpl.java

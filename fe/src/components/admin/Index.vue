@@ -73,6 +73,12 @@
                         </el-icon>
                         实验管理
                     </el-menu-item>
+                  <el-menu-item index="/admin/check">
+                    <el-icon>
+                      <DataAnalysis />
+                    </el-icon>
+                    教学检查
+                  </el-menu-item>
 
                    <el-menu-item index="exit" style="background-color: red; color: white;">
                         <el-icon>
