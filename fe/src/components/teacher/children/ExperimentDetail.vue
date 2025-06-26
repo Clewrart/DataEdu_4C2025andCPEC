@@ -1,3 +1,204 @@
+<style lang="scss" scoped>
+@import '@/styles/student';
+
+.header {
+  margin-bottom: 20px;
+
+  .back .el-button {
+    transition: $transition-all;
+
+    &:hover {
+      transform: translateX(-3px);
+    }
+  }
+}
+
+.el-row {
+  display: flex;
+  gap: 20px;
+  @include responsive-layout;
+}
+
+.experiment {
+  @include card-style;
+
+  > div {
+    display: flex;
+    margin: 12px 0;
+    align-items: center;
+
+    .label {
+      font-weight: bold;
+      min-width: 120px;
+      color: $text-primary;
+    }
+
+    .value {
+      font-weight: bold;
+      color: $highlight-color;
+    }
+  }
+
+  .name {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: $text-primary;
+  }
+
+  .teacherDocs, .uploadFile {
+    margin-top: 20px;
+
+    .list .item {
+      @include card-style;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 15px;
+      margin-bottom: 10px;
+
+      .origin-name {
+        font-weight: bold;
+        color: $highlight-color;
+        flex: 1;
+      }
+
+      .el-button {
+        margin-left: 10px;
+        transition: $transition-all;
+
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+
+  .uploadFile .label {
+    margin-bottom: 15px;
+
+    .el-button {
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+  }
+}
+
+.rankList {
+  @include card-style;
+  height: fit-content;
+  weight: 50%;
+
+  .title {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    color: $text-primary;
+    padding-bottom: 10px;
+    border-bottom: 1px solid $border-color;
+  }
+
+  .list {
+    max-height: 500px;
+    overflow-y: auto;
+    padding: 0 10px;
+
+    .header, .item {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px dashed $border-color;
+
+      > div {
+        flex: 1;
+        text-align: center;
+      }
+    }
+
+    .header {
+      font-weight: bold;
+      color: $warning-color;
+      position: sticky;
+      top: 0;
+      background: $card-bg;
+    }
+
+    .item {
+      color: $rank-color;
+      transition: $transition-all;
+
+      &:hover {
+        background-color: rgba($primary-color, 0.05);
+      }
+    }
+  }
+}
+
+.deadline-warning {
+  color: $danger-color;
+  font-weight: bold;
+  padding: 10px;
+  background-color: rgba($danger-color, 0.1);
+  border-radius: $border-radius-small;
+  text-align: center;
+}
+
+:deep(.el-dialog) {
+  border-radius: $border-radius-base;
+
+  .el-upload-dragger {
+    padding: 30px;
+    border-radius: $border-radius-base;
+
+    .el-icon--upload {
+      font-size: 60px;
+      color: $primary-color;
+      margin-bottom: 15px;
+    }
+
+    .el-upload__text {
+      font-size: 16px;
+
+      em {
+        color: $primary-color;
+        font-style: normal;
+      }
+    }
+  }
+
+  .uploadFileName {
+    margin-top: 15px;
+
+    .name {
+      color: $highlight-color;
+      font-weight: bold;
+      margin-top: 5px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .experiment > div {
+    flex-direction: column;
+    align-items: flex-start;
+
+    .label {
+      margin-bottom: 5px;
+    }
+  }
+
+  .rankList {
+    width: 120%;
+    margin-top: 10px;
+
+    .list {
+      height: 70%;
+      max-height: 300px;
+      width: 100%;
+    }
+  }
+}
+</style>
 <template>
     <div class="header">
         <div class="back">
@@ -273,7 +474,7 @@ onMounted(async () => {
 }
 
 .rankList{
-  width: 360px;
+  width: 400px;
     .title{
         font-weight: bold;
         text-align: center;

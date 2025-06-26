@@ -1,3 +1,93 @@
+<style lang="scss" scoped>
+@import '@/styles/student';
+
+.head {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  margin: 0 auto 20px;
+  gap: 15px;
+
+  .el-input {
+    flex: 1;
+  }
+}
+
+.el-table {
+  @include card-style;
+  margin-bottom: 20px;
+
+  :deep(.el-table__header) th {
+    background-color: lighten($primary-color, 40%);
+    color: $text-primary;
+    font-weight: bold;
+  }
+
+  :deep(.el-table__row) {
+    transition: $transition-all;
+
+    &:hover {
+      background-color: rgba($primary-color, 0.05);
+    }
+  }
+
+  .el-button {
+    transition: $transition-all;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+}
+
+.pager {
+  @include card-style;
+  padding: 12px;
+
+  .slot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+    .total .value {
+      color: $primary-color;
+      font-weight: bold;
+    }
+
+    .jumper .input {
+      .el-input {
+        width: 60px;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .head {
+    width: 90%;
+    flex-direction: column;
+
+    .el-input {
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+  }
+
+  .el-table {
+    :deep(.el-table-column) {
+      &:nth-child(n+4) {
+        display: none;
+      }
+    }
+  }
+}
+</style>
 <template>
     <div class="head">
         <el-input type="text" v-model="keyword" style="margin-right:15px;"> </el-input>
@@ -6,25 +96,39 @@
     </div>
     <div class="content" style="margin-left: 30px;margin-right: 30px;">
         <el-table :data="tableData" :scrollbar-always-on="true" style="width: 100%">
-            <el-table-column prop="id" label="ID" width="40"/>
-            <el-table-column prop="name" label="实验名" width="80"/>
-            <el-table-column prop="description" label="要求/说明" width="230px" />
+            <el-table-column prop="id" label="ID" width="60px"/>
+            <el-table-column prop="name" label="实验名" width="160px"/>
+            <el-table-column prop="description" label="要求/说明" width="300px" />
             <el-table-column prop="uploadFileType" label="上传文件类型" width="120px" />
-            <el-table-column prop="judgeUrl" label="评判接口地址" width="220px" />
-            <el-table-column prop="deadlineTime" label="截止时间" />
-            <el-table-column prop="createdTime" label="创建时间" />
-            <el-table-column label="操作" fixed="right" width="90px">
-                <template #default="scope">
-                    <el-button type="primary" :icon="Edit" @click="editCallBack(scope.row)">修改</el-button><span><br></span>
-                    <el-popconfirm confirm-button-text="确定" cancel-button-text="取消" :icon="InfoFilled" icon-color="#ff6c37"
-                        title="确定删除吗?" @confirm="handleDelete(scope.row.id)" @cancel="cancelEvent">
-                        <template #reference>
-                            <el-button type="danger" :icon="Delete" @click="">删除</el-button>
-                        </template>
-                    </el-popconfirm><span><br></span>
-                    <el-button type="success" :icon="Edit" @click="toExperimentDetail(scope.row.id)">详情</el-button>
-                </template>
-            </el-table-column>
+            <el-table-column prop="judgeUrl" label="评判接口地址" width="180px" />
+            <el-table-column prop="deadlineTime" label="截止时间" width="120px" />
+            <el-table-column prop="createdTime" label="创建时间"  width="120px"/>
+          <el-table-column label="操作" fixed="right" width="220px">
+            <template #default="scope">
+              <el-button
+                  type="success"
+                  :icon="Edit"
+                  @click="toExperimentDetail(scope.row.id)"
+                  style="margin-bottom: 5px">查看实验情况与详情
+              </el-button>
+              <div style="display: flex; gap: 8px">
+                <el-button type="primary" :icon="Edit" @click="editCallBack(scope.row)">修改</el-button>
+                <el-popconfirm
+                    confirm-button-text="确定"
+                    cancel-button-text="取消"
+                    :icon="InfoFilled"
+                    icon-color="#ff6c37"
+                    title="确定删除吗?"
+                    @confirm="handleDelete(scope.row.id)"
+                    @cancel="cancelEvent"
+                >
+                  <template #reference>
+                    <el-button type="danger" :icon="Delete">删除</el-button>
+                  </template>
+                </el-popconfirm>
+              </div>
+            </template>
+          </el-table-column>
         </el-table>
     </div>
     <div class="pager">
@@ -69,7 +173,7 @@
         </el-select>
         <el-input type="text" v-model="editForm.judgeUrl" placeholder="评判接口地址" />
         <el-input type="number" :min="1" v-model.number="editForm.totalUploadCount" placeholder="可上传次数" />
-        <TimePicker label="请选择截止时间" :time="editForm.deadlineTime" @change="handleSelectEditTime"> </TimePicker>
+        <TimePicker label="截止时间" :time="editForm.deadlineTime" @change="handleSelectEditTime"> </TimePicker>
         <template #footer>
             <div class="dialog-footer">
                 <el-button @click="editVisible = false">取消</el-button>
@@ -84,7 +188,7 @@
         <el-input type="text" v-model="addForm.name" placeholder="实验名" />
         <el-input type="textarea" v-model="addForm.description" placeholder="要求/说明" />
 
-        <TimePicker label="请选择截止时间" :time="addForm.deadlineTime" @change="handleSelectAddTime"></TimePicker>
+        <TimePicker label="截止时间" :time="addForm.deadlineTime" @change="handleSelectAddTime"></TimePicker>
 
         <el-input type="number" :min="1" v-model.number="addForm.totalUploadCount" placeholder="可上传次数" />
         <el-select v-model="addForm.uploadFileType" placeholder="请选择学生上传文件类型" style="width: 240px">

@@ -1,0 +1,42 @@
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin card-style {
+  background: #fff;
+  border-radius: $border-radius-base;
+  box-shadow: $box-shadow;
+  transition: $transition-all;
+
+  &:hover {
+    box-shadow: $box-shadow-dark;
+  }
+}
+
+@mixin button-style($bg-color) {
+  background-color: $bg-color;
+  color: #fff;
+  border: none;
+  border-radius: $border-radius-round;
+  padding: 10px 20px;
+  font-size: $font-size-base;
+  cursor: pointer;
+  transition: $transition-all;
+
+  &:hover {
+    background-color: darken($bg-color, 10%);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}

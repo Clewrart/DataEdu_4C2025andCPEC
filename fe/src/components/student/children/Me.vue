@@ -1,3 +1,89 @@
+<style lang="scss" scoped>
+@import '@/styles/student';
+
+.head {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  margin: 0 auto 20px;
+  gap: 15px;
+
+  .el-input {
+    flex: 1;
+  }
+}
+
+.el-table {
+  @include card-style;
+  margin-bottom: 20px;
+
+  :deep(.el-table__header) th {
+    background-color: lighten($primary-color, 40%);
+    color: $text-primary;
+    font-weight: bold;
+  }
+
+  :deep(.el-table__row) {
+    transition: $transition-all;
+
+    &:hover {
+      background-color: rgba($primary-color, 0.05);
+    }
+  }
+
+  .el-button {
+    transition: $transition-all;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+}
+
+.pager {
+  @include card-style;
+  padding: 12px;
+
+  .slot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+    .total .value {
+      color: $primary-color;
+      font-weight: bold;
+    }
+
+    .jumper .input {
+      .el-input {
+        width: 60px;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .head {
+    width: 90%;
+    flex-direction: column;
+
+    .el-input {
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+  }
+
+  .el-table {
+    :deep(.el-table-column) {
+      &:nth-child(n+3) {
+        display: none;
+      }
+    }
+  }
+}
+</style>
 <template>
         <div class="head">
                 <el-input type="text" v-model="keyword" style="margin-right:15px;"> </el-input>
@@ -5,11 +91,11 @@
         </div>
         <el-table :data="tableDataPagedList" :scrollbar-always-on="true" style="width: 100%">
                 <el-table-column prop="id" label="ID" width="100px" />
-                <el-table-column prop="name" label="实验名" width="300px" />
-                <el-table-column prop="description" label="实验说明" />
-                <el-table-column label="操作" fixed="right" width="100px">
+                <el-table-column prop="name" label="实验名" width="200px" />
+                <el-table-column prop="description" label="实验说明" width="858px" />
+                <el-table-column label="操作" fixed="right" width="200px">
                         <template #default="scope">
-                                <el-button type="primary" :icon="DArrowRight" @click="toDetail(scope.row.id)" style="width: 87px;">详情</el-button>
+                                <el-button type="primary" :icon="DArrowRight" @click="toDetail(scope.row.id)" style="width: 180px;">查看作业详情</el-button>
                         </template>
                 </el-table-column>
         </el-table>

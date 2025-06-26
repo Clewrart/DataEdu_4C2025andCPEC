@@ -1,0 +1,179 @@
+@import 'variables';
+@import 'mixins';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $font-family;
+  color: $text-primary;
+  background-color: $background-color-base;
+  line-height: 1.5;
+}
+
+a {
+  color: $primary-color;
+  text-decoration: none;
+  transition: $transition-all;
+
+  &:hover {
+    color: darken($primary-color, 10%);
+  }
+}
+
+// 表格样式增强
+.el-table {
+  @include card-style;
+  margin-bottom: 20px;
+
+  th {
+    background-color: lighten($primary-color, 40%) !important;
+    color: $text-primary;
+    font-weight: bold;
+  }
+
+  .el-button {
+    margin: 2px;
+  }
+}
+
+// 分页样式增强
+.pager {
+  @include card-style;
+  padding: 15px;
+  margin-top: 20px;
+
+  .slot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+
+    .total {
+      font-weight: bold;
+
+      .value {
+        color: $primary-color;
+      }
+    }
+  }
+}
+
+// 对话框样式增强
+.el-dialog {
+  border-radius: $border-radius-base;
+
+  &__header {
+    border-bottom: 1px solid $border-color-light;
+    padding: 15px 20px;
+
+    .el-dialog__title {
+      font-size: $font-size-large;
+      font-weight: bold;
+    }
+  }
+
+  &__body {
+    padding: 20px;
+
+    .el-input, .el-select, .el-textarea {
+      margin-bottom: 15px;
+    }
+  }
+
+  &__footer {
+    border-top: 1px solid $border-color-light;
+    padding: 15px 20px;
+    text-align: right;
+  }
+}
+
+// 头部搜索区域样式
+.head {
+  @include card-style;
+  padding: 15px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  .el-input {
+    flex: 1;
+  }
+}
+
+// 按钮样式增强
+.el-button {
+  transition: $transition-all;
+
+  &--primary {
+    @include button-style($primary-color);
+  }
+
+  &--success {
+    @include button-style($success-color);
+  }
+
+  &--warning {
+    @include button-style($warning-color);
+  }
+
+  &--danger {
+    @include button-style($danger-color);
+  }
+}
+
+// 登录页面特殊样式
+.login-page {
+  background: linear-gradient(135deg, #4A90E2, #9013FE);
+  height: 100vh;
+  @include flex-center;
+
+  .page {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 40px;
+    width: 450px;
+    max-width: 90%;
+
+    .title {
+      font-size: 28px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 30px;
+      color: $text-primary;
+    }
+
+    .input-group {
+      margin-bottom: 20px;
+
+      .el-input {
+        width: 100%;
+      }
+    }
+
+    .tips {
+      color: $text-secondary;
+      font-size: $font-size-base;
+      margin: 10px 0;
+      text-align: center;
+    }
+
+    .cb {
+      margin: 15px 0;
+    }
+
+    .button {
+      margin-top: 20px;
+
+      .el-button {
+        width: 100%;
+        padding: 12px;
+        font-size: $font-size-medium;
+      }
+    }
+  }
+}

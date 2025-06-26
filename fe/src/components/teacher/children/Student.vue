@@ -1,3 +1,42 @@
+<style lang="scss" scoped>
+@import '@/styles/variables';
+
+.container {
+  padding: 20px;
+
+  .table-container {
+    @include card-style;
+    padding: 20px;
+  }
+
+  .operation-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+}
+
+// 响应式调整
+@media (max-width: 768px) {
+  .head {
+    flex-direction: column;
+    align-items: stretch;
+
+    .el-input {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+  }
+
+  .el-table {
+    .el-table-column {
+      &:nth-child(n+4) {
+        display: none;
+      }
+    }
+  }
+}
+</style>
 <template>
     <div class="head">
             <div class="input">
@@ -29,11 +68,11 @@
                 <el-checkbox v-model="scope.row.selected" size="large" />
              </template>
         </el-table-column>
-        <el-table-column prop="id" label="ID" />
+        <el-table-column prop="id" label="ID"  />
         <el-table-column prop="number" label="学号" />
         <el-table-column prop="name" label="姓名" />
-        <el-table-column prop="createdTime" label="创建时间" />
-        <el-table-column label="操作" fixed="right" width="200px">
+        <el-table-column prop="createdTime" label="创建时间"  />
+        <el-table-column label="操作" fixed="right" width="220px">
             <template #default="scope">
                 <el-button type="primary" :icon="Edit" @click="editCallBack(scope.row)">修改</el-button>
                 <el-popconfirm confirm-button-text="确定" cancel-button-text="取消" :icon="InfoFilled" icon-color="#ff6c37"
@@ -145,8 +184,8 @@ const tableData = ref([]);
 const keyword = ref("");
 
 const currentPage = ref(1);
-const currentSize = ref(5);
-const pageSizes = [5, 10, 20, 50]
+const currentSize = ref(8);
+const pageSizes = [5, 8, 10, 20, 50]
 const total = ref(0)
 
 const selectToolsVisible=ref(false)

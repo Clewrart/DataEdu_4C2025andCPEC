@@ -6,7 +6,6 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 import path from 'path'
 
-// https://vitejs.dev/config/
 export default defineConfig({
     plugins: [
         vue(),
@@ -18,9 +17,7 @@ export default defineConfig({
         }),
     ],
     resolve: {
-        // 别名配置
         alias: {
-            // 将根目录的src映射为@
             "@": path.resolve(__dirname, "src"),
             "@compos": path.resolve(__dirname, "src/components"),
             "@assets": path.resolve(__dirname, "src/assets"),
@@ -30,18 +27,24 @@ export default defineConfig({
             "@store": path.resolve(__dirname, "src/store"),
         }
     },
-    define: {
-        // __DOCUMENT_BASE_URL: JSON.stringify('http://localhost:5000/download'),
+    css: {
+        preprocessorOptions: {
+            scss: {
+                additionalData: `
+          @import "@/styles/variables.scss";
+          @import "@/styles/mixins.scss";
+          @import "@/styles/global.scss";
+          @import "@/styles/student.scss";
+        `
+            }
+        }
     },
-
-    // 配置代理
     server: {
         port: 6173,
         host: "0.0.0.0",
         proxy: {
             '/api': {
                 target: 'http://124.71.62.19:1152/api',
-                
                 changeOrigin: true,
                 rewrite: (path) => path.replace(/^\/api/, '')
             },

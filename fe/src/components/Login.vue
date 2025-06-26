@@ -20,7 +20,7 @@
             </div>
               <br>
             <div class="tips"><b>计算机设计大赛账号</b></div>
-            <div class="tips">教师角色：账号：13012345678 密码：asd@123</div>
+            <div class="tips">教师角色：账号：13012345678，密码：asd@123</div>
             <div class="tips">学生角色：账号：20250401001，密码：asd@123</div>
             <div class="tips">其他学生：从20250505001到20250505054，密码是账号后六位</div>
 

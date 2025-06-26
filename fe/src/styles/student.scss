@@ -1,0 +1,59 @@
+// 颜色变量
+$primary-color: #409EFF;
+$success-color: #67C23A;
+$warning-color: #E6A23C;
+$danger-color: #F56C6C;
+$info-color: #909399;
+$text-primary: #303133;
+$text-regular: #606266;
+$text-secondary: #909399;
+$border-color: #DCDFE6;
+$background-color: #F5F7FA;
+$card-bg: #ffffff;
+$highlight-color: #25b0f3;
+$rank-color: #008c8c;
+$deadline-warning: #ff4d4f;
+
+// 阴影
+$box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.08);
+$box-shadow-hover: 0 4px 16px 0 rgba(0, 0, 0, 0.12);
+
+// 圆角
+$border-radius-base: 8px;
+$border-radius-small: 4px;
+$border-radius-round: 20px;
+
+// 过渡
+$transition-all: all 0.3s ease;
+
+// 混合
+@mixin card-style {
+  background: $card-bg;
+  border-radius: $border-radius-base;
+  box-shadow: $box-shadow;
+  transition: $transition-all;
+  padding: 16px;
+  margin-bottom: 16px;
+
+  &:hover {
+    box-shadow: $box-shadow-hover;
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin responsive-layout {
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+
+    .el-col, .rankList {
+      width: 100% !important;
+      max-width: 100%;
+    }
+  }
+}

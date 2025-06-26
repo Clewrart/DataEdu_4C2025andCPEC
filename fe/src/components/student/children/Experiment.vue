@@ -1,18 +1,108 @@
+<style lang="scss" scoped>
+@import '@/styles/student';
+
+.head {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  margin: 0 auto 20px;
+  gap: 15px;
+
+  .el-input {
+    flex: 1;
+  }
+}
+
+.el-table {
+  @include card-style;
+  margin-bottom: 20px;
+
+  :deep(.el-table__header) th {
+    background-color: lighten($primary-color, 40%);
+    color: $text-primary;
+    font-weight: bold;
+  }
+
+  :deep(.el-table__row) {
+    transition: $transition-all;
+
+    &:hover {
+      background-color: rgba($primary-color, 0.05);
+    }
+  }
+
+  .el-button {
+    transition: $transition-all;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+}
+
+.pager {
+  @include card-style;
+  padding: 12px;
+
+  .slot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+    .total .value {
+      color: $primary-color;
+      font-weight: bold;
+    }
+
+    .jumper .input {
+      .el-input {
+        width: 60px;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .head {
+    width: 90%;
+    flex-direction: column;
+
+    .el-input {
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+  }
+
+  .el-table {
+    :deep(.el-table-column) {
+      &:nth-child(n+4) {
+        display: none;
+      }
+    }
+  }
+}
+</style>
 <template>
     <div class="head">
         <el-input type="text" v-model="keyword" style="margin-right:15px;"></el-input>
         <el-button type="primary" :icon="Search" @click="handleSearch">搜索</el-button>
     </div>
     <el-table :data="tableData" :scrollbar-always-on="true" style="width: 100%">
-        <el-table-column prop="id" label="ID" />
-        <el-table-column prop="name" label="姓名" />
-        <el-table-column prop="description" label="要求/说明" width="230px" />
-        <el-table-column prop="teacherId" label="教师" :formatter="teacherFormatter" />
+        <el-table-column prop="id" label="ID" width="60px" />
+        <el-table-column prop="name" label="实验名" width="120px" />
+        <el-table-column prop="description" label="要求/说明" width="350px" />
+        <el-table-column prop="teacherId" label="教师" :formatter="teacherFormatter" width="120px" />
         <el-table-column prop="uploadFileType" label="上传文件类型" width="120px" />
         <el-table-column prop="totalUploadCount" label="可上传次数" width="120px" />
-        <el-table-column prop="deadlineTime" label="截止时间" width="90px" />
-        <el-table-column prop="createdTime" label="创建时间" width="90px" />
-        <el-table-column label="操作" fixed="right" width="100px">
+        <el-table-column prop="deadlineTime" label="截止时间" width="150px" />
+        <el-table-column prop="createdTime" label="创建时间" width="150px" />
+        <el-table-column label="操作" fixed="right" width="150px">
             <template #default="scope">
                 <el-popconfirm confirm-button-text="确定" cancel-button-text="取消" :icon="InfoFilled" icon-color="#ff6c37"
                     title="确定加入该实验吗?" @confirm="handleParticipate(scope.row.id)" @cancel="cancelEvent">
@@ -22,9 +112,7 @@
                             :icon="Plus"
                             @click=""
                             style="width: 87px;"
-                            :disabled="isAfterDeadline(scope.row.deadlineTime)"
-                        >
-                            加入
+                            :disabled="isAfterDeadline(scope.row.deadlineTime)">加入
                         </el-button>
                     </template>
                 </el-popconfirm>

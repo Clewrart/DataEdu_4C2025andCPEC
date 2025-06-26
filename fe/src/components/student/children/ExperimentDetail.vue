@@ -1,3 +1,204 @@
+<style lang="scss" scoped>
+@import '@/styles/student';
+
+.header {
+  margin-bottom: 20px;
+
+  .back .el-button {
+    transition: $transition-all;
+
+    &:hover {
+      transform: translateX(-3px);
+    }
+  }
+}
+
+.el-row {
+  display: flex;
+  gap: 20px;
+  @include responsive-layout;
+}
+
+.experiment {
+  @include card-style;
+
+  > div {
+    display: flex;
+    margin: 12px 0;
+    align-items: center;
+
+    .label {
+      font-weight: bold;
+      min-width: 120px;
+      color: $text-primary;
+    }
+
+    .value {
+      font-weight: bold;
+      color: $highlight-color;
+    }
+  }
+
+  .name {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: $text-primary;
+  }
+
+  .teacherDocs, .uploadFile {
+    margin-top: 20px;
+
+    .list .item {
+      @include card-style;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 15px;
+      margin-bottom: 10px;
+
+      .origin-name {
+        font-weight: bold;
+        color: $highlight-color;
+        flex: 1;
+      }
+
+      .el-button {
+        margin-left: 10px;
+        transition: $transition-all;
+
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+
+  .uploadFile .label {
+    margin-bottom: 15px;
+
+    .el-button {
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+  }
+}
+
+.rankList {
+  @include card-style;
+  height: fit-content;
+  weight: 50%;
+
+  .title {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    color: $text-primary;
+    padding-bottom: 10px;
+    border-bottom: 1px solid $border-color;
+  }
+
+  .list {
+    max-height: 500px;
+    overflow-y: auto;
+    padding: 0 10px;
+
+    .header, .item {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px dashed $border-color;
+
+      > div {
+        flex: 1;
+        text-align: center;
+      }
+    }
+
+    .header {
+      font-weight: bold;
+      color: $warning-color;
+      position: sticky;
+      top: 0;
+      background: $card-bg;
+    }
+
+    .item {
+      color: $rank-color;
+      transition: $transition-all;
+
+      &:hover {
+        background-color: rgba($primary-color, 0.05);
+      }
+    }
+  }
+}
+
+.deadline-warning {
+  color: $danger-color;
+  font-weight: bold;
+  padding: 10px;
+  background-color: rgba($danger-color, 0.1);
+  border-radius: $border-radius-small;
+  text-align: center;
+}
+
+:deep(.el-dialog) {
+  border-radius: $border-radius-base;
+
+  .el-upload-dragger {
+    padding: 30px;
+    border-radius: $border-radius-base;
+
+    .el-icon--upload {
+      font-size: 60px;
+      color: $primary-color;
+      margin-bottom: 15px;
+    }
+
+    .el-upload__text {
+      font-size: 16px;
+
+      em {
+        color: $primary-color;
+        font-style: normal;
+      }
+    }
+  }
+
+  .uploadFileName {
+    margin-top: 15px;
+
+    .name {
+      color: $highlight-color;
+      font-weight: bold;
+      margin-top: 5px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .experiment > div {
+    flex-direction: column;
+    align-items: flex-start;
+
+    .label {
+      margin-bottom: 5px;
+    }
+  }
+
+  .rankList {
+    width: 120%;
+    margin-top: 10px;
+
+    .list {
+      height: 70%;
+      max-height: 300px;
+      width: 100%;
+    }
+  }
+}
+</style>
 <template>
     <div class="header" style="margin: 10px;">
         <div class="back">
@@ -42,53 +243,62 @@
                     <div class="label">需要上传文件类型</div>
                     <div class="value">{{ experiment.uploadFileType }}</div>
                 </div>
+
+                <div class="time">
+                  <div class="label">创建时间</div>
+                  <div class="value">{{ experiment.createdTime }}</div>
+               </div>
+
+                <div class="time">
+                  <div class="label">截止时间</div>
+                  <div class="value">{{ experiment.deadlineTime }}</div>
+                </div>
+
                 <div class="score">
-                    <div class="label">最后一次上传得分</div>
-                    <div class="value">{{ currentES.score }}</div>
+                  <div class="label" style="font-size: 20px">最后一次上传得分</div>
+                  <div class="value" style="font-size: 50px" >{{ currentES.score }}</div>
                 </div>
                 <div class="rank">
                     <div class="label">最后一次得分排名（同分按时间排序）</div>
-                    <div class="value">{{ myRank>0?myRank:'暂无' }}</div>
+                    <div class="value" style="font-size: 30px">{{ myRank>0?myRank:'暂无' }}</div>
                 </div>
-              <div class="time">
-                    <div class="label">创建时间</div>
-                    <div class="value">{{ experiment.createdTime }}</div>
-              </div>
-              <div class="time">
-                    <div class="label">截止时间</div>
-                    <div class="value">{{ experiment.deadlineTime }}</div>
-              </div>
-                <div class="uploadFile">
-                  <div class="label">
-                      <!--超过截止时间，禁用按钮 -->
-                    <div v-if="isAfterDeadline===false">
-                          <el-button type="primary" :icon="Plus" size="mini" @click="uploadDocumentVisible = true"
-                                 :disabled="isUploadDisabled">点此上传作业</el-button>
-                      </div>
 
-                      <div v-if="isAfterDeadline" class="deadline-warning">
-                          任务时间点已过！
-                      </div>
+              <div class="uploadFile">
+                <div class="label">
+                  <!--超过截止时间，禁用按钮 -->
+                  <div v-if="isAfterDeadline===false">
+                    <el-button type="primary" :icon="Plus" size="mini" @click="uploadDocumentVisible = true"
+                               :disabled="isUploadDisabled">点此上传作业</el-button>
                   </div>
-            </div>
+
+                  <div v-if="isAfterDeadline" class="deadline-warning">
+                    任务时间点已过！
+                  </div>
+                </div>
+              </div>
+              </div>
+
                     <div class="value">
+                      <p>已上传作业记录（从新到旧）：</p>
                         <div v-if="studentDocuments.length === 0">
                             你暂未上传相关作业。
                         </div>
+                      <div id="card">
                         <div class="list">
                             <div class="item" v-for="document in studentDocuments">
+                              <div class="item">
                                 <div class="origin-name">
                                     {{ document.originName }}
+                                  <el-button type="success" :icon="Download" circle size="small"
+                                             @click="getFile(document.saveName)"></el-button>
+                                  <el-button type="danger" :icon="Delete" circle size="small"
+                                             @click="deleteTeacherDocument(document.id)"></el-button>
                                 </div>
-                                <el-button type="success" :icon="Download" circle size="mini"
-                                    @click="getFile(document.saveName)"></el-button>
-                                <el-button type="danger" :icon="Delete" circle size="mini"
-                                    @click="deleteTeacherDocument(document.id)"></el-button>
+                              </div>
                             </div>
                         </div>
+                       </div>
                     </div>
-
-                </div>
         </el-col>
         <div class="rankList">
           <div class="title">本次实验排行榜</div>
@@ -356,7 +566,7 @@ const isAfterDeadline = computed(() => {
 .experiment {
     >div {
         display: flex;
-        margin: 10px 0;
+        margin: 2px 0;
 
         .label {
             font-weight: bold;
@@ -433,7 +643,7 @@ const isAfterDeadline = computed(() => {
 
 }
 .rankList{
-  width: 360px;
+  width: 400px;
     .title{
         font-weight: bold;
         text-align: center;
@@ -475,7 +685,7 @@ const isAfterDeadline = computed(() => {
 }
 
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 750px) {
     .el-row {
         display: flex;
         flex-direction: column;
@@ -489,8 +699,8 @@ const isAfterDeadline = computed(() => {
 
     .experiment-details,
     .rank-section {
-        width: 100%;
-        max-width: 600px;
+        width: 95%;
+        max-width: 500px;
         display: flex;
         flex-direction: column;
         align-items: center;

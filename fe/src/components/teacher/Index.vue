@@ -1,3 +1,42 @@
+<style lang="scss" scoped>
+@import '@/styles/variables';
+
+.container {
+  padding: 20px;
+
+  .table-container {
+    @include card-style;
+    padding: 20px;
+  }
+
+  .operation-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+}
+
+// 响应式调整
+@media (max-width: 768px) {
+  .head {
+    flex-direction: column;
+    align-items: stretch;
+
+    .el-input {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+  }
+
+  .el-table {
+    .el-table-column {
+      &:nth-child(n+4) {
+        display: none;
+      }
+    }
+  }
+}
+</style>
 <template>
     <div class="admin">
         <el-row>

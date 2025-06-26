@@ -1,9 +1,48 @@
+<style lang="scss" scoped>
+@import '@/styles/variables';
+
+.container {
+  padding: 20px;
+
+  .table-container {
+    @include card-style;
+    padding: 20px;
+  }
+
+  .operation-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+}
+
+// 响应式调整
+@media (max-width: 768px) {
+  .head {
+    flex-direction: column;
+    align-items: stretch;
+
+    .el-input {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+  }
+
+  .el-table {
+    .el-table-column {
+      &:nth-child(n+4) {
+        display: none;
+      }
+    }
+  }
+}
+</style>
+
 <template>
     <div class="head">
-        <el-input type="text" v-model="keyword" style="margin-right:15px;" </el-input>
+        <el-input type="text" v-model="keyword" style="margin-right:15px;" ></el-input>
             <el-button type="primary" :icon="Search" @click="handleSearch">搜索</el-button>
             <!-- <el-button type="primary" :icon="Plus" @click="addCallBack">添加</el-button> -->
-
     </div>
     <el-table :data="tableData" :scrollbar-always-on="true" style="width: 100%">
         <el-table-column prop="id" label="ID" />

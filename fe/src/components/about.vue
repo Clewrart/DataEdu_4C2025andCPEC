@@ -8,7 +8,7 @@ import {onMounted} from "vue";
       <img src="../assets/logo.png" alt="系统logo" class="logo" />
       <h1 class="title">慧图工坊</h1>
       <h2 class="subtitle">机器学习与图像处理综合教学实验平台</h2>
-      <h3 class="date">2025.03</h3>
+      <h3 class="date">2025.04</h3>
       <div class="info">
         <p>参赛院校：<strong>西南林业大学</strong></p>
         <p>参赛学生：<strong>郭思宇 & 闫建槿</strong></p>
