@@ -32,8 +32,8 @@ public interface ExperimentMapper extends BaseMapper<Experiment> {
 
   @Select("SELECT " +
           "COUNT(DISTINCT es.student_id) AS enrolledCount, " +
-          "SUM(CASE WHEN es.score IS NOT NULL THEN 1 ELSE 0 END) AS submittedCount, " +
-          "AVG(es.score) AS averageScore " +
+          "SUM(CASE WHEN es.score = 0 THEN 1 ELSE 0 END) AS submittedCount, " +
+          "AVG(CASE WHEN es.score != 0 THEN es.score ELSE NULL END) AS averageScore " +
           "FROM experiment_student es " +
           "WHERE es.experiment_id = #{experimentId}")
   ExperimentStatsDTO selectStatsByExperimentId(Integer experimentId);

@@ -26,7 +26,7 @@
         </el-col>
         <el-col :span="6">
           <el-card class="stat-card">
-            <div class="stat-title">实验进度</div>
+            <div class="stat-title">实验提交进度</div>
             <div class="stat-value">
               {{ stats.submittedCount || 0 }}/{{ stats.enrolledCount || 0 }}
               ({{ progressPercentage }}%)
