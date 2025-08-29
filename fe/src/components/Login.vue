@@ -18,11 +18,7 @@
             <div class="cb">
               <el-checkbox v-model="agreeNoSharing">我保证不向他人传播题目和答案</el-checkbox>
             </div>
-              <br>
-            <div class="tips"><b>计算机设计大赛账号</b></div>
-            <div class="tips">教师角色：账号：13012345678，密码：asd@123</div>
-            <div class="tips">学生角色：账号：20250401001，密码：asd@123</div>
-            <div class="tips">其他学生：从20250505001到20250505054，密码是账号后六位</div>
+
 
 <!--登录防止多次请求耗资源，增加加载状态loading waitLogin函数-->
             <div class="button">

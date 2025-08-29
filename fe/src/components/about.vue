@@ -7,12 +7,14 @@ import {onMounted} from "vue";
     <div class="card">
       <img src="../assets/logo.png" alt="系统logo" class="logo" />
       <h1 class="title">慧图工坊</h1>
-      <h2 class="subtitle">机器学习与图像处理综合教学实验平台</h2>
+      <h2 class="subtitle">基于模块化架构的机器学习与图像处理实验课程自动评分系统</h2>
       <h3 class="date">2025.04</h3>
       <div class="info">
-        <p>参赛院校：<strong>西南林业大学</strong></p>
-        <p>参赛学生：<strong>郭思宇 & 闫建槿</strong></p>
-        <p>指导教师：<strong>赵毅力</strong></p>
+        <p>院校：<strong>西南林业大学</strong></p>
+        <p>论文题目：<strong>基于模块化架构的机器学习与图像处理实验课程自动评分系统</strong></p>
+        <p>学生：<strong>郭思宇</strong></p>
+        <p>教师：<strong>赵毅力</strong></p>
+
       </div>
     </div>
   </div>

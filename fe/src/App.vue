@@ -2,15 +2,14 @@
   <div class="top-nav">
     <div class="logo-container">
       <img src="./assets/logo.png" alt="系统logo" class="logo" />
-      <span class="system-name"> <router-link to="/about" style="color:dodgerblue;text-decoration: none;">慧图工坊</router-link>  机器学习与图像处理综合教学实验平台</span>
+      <span class="system-name"> <router-link to="/about" style="color:dodgerblue;text-decoration: none;">慧图工坊</router-link>基于模块化架构的机器学习与图像处理实验课程自动评分系统</span>
     </div>
     <div class="nav-links">
       <router-link to="/help" class="nav-link" tag="a" target="_blank">使用帮助</router-link>
       <router-link to="/about" class="nav-link" tag="a" target="_blank">关于系统</router-link>
     </div>
     <div class="version-container">
-      <img class="logo" src="https://www.clewrart.top/content/uploadfile/202506/35dd1750933644.png">
-      <img width="240px" height="60px" src="https://www.clewrart.top/content/uploadfile/202506/e73c1750933679.png">
+      <img width="240px" height="60px" src="https://www.clewrart.top/content/uploadfile/202508/78181756438038.png">
     </div>
 
   </div>
